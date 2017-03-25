@@ -1,0 +1,7 @@
+name: Minecord
+version: 1.0.0
+description: A discord connector for Minecraft.
+website: www.cloudcraftgaming.com
+author: NovaFox161 (Shades161)
+
+main: com.cloudcraftgaming.minecord.Main
