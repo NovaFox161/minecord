@@ -24,11 +24,12 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         plugin = this;
 
-        //File stufs
+        //File stuffs
         FileManager.createConfig();
+        FileManager.checkFileVersions();
 
         //Connect bot
-        client = createClient("token"); //TODO: Token from config
+        client = createClient(getConfig().getString("Bot.Token"));
         if (client == null)
             throw new NullPointerException("Failed to log in! Client cannot be null!");
 
