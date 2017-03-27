@@ -26,6 +26,11 @@ public class Main extends JavaPlugin {
     @Override
     public void onDisable() {
         //Disconnect bot
+        try {
+            client.logout();
+        } catch (DiscordException e) {
+            //Didn't log out, but that's fine.
+        }
     }
 
     public void onEnable() {
