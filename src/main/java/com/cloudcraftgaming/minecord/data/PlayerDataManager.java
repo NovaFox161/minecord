@@ -6,6 +6,7 @@ import com.cloudcraftgaming.minecord.bukkit.utils.FileManager;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import sx.blah.discord.handle.obj.IGuild;
+import sx.blah.discord.handle.obj.IRole;
 import sx.blah.discord.handle.obj.IUser;
 import sx.blah.discord.util.RequestBuffer;
 
@@ -52,6 +53,9 @@ public class PlayerDataManager {
 
             //TODO: give role.
             changeDiscordNickname(user, playerData.getString("Players." + playerIdString + ".Name"));
+            if (Main.plugin.getConfig().getString("Bot.Role.Apply").equalsIgnoreCase("True")) {
+                addMemberRole(user, Main.plugin.getConfig().getString("Bot.Role.Name"));
+            }
             return true;
         }
 
@@ -82,5 +86,39 @@ public class PlayerDataManager {
                 }
             });
         }
+    }
+
+    private static void addMemberRole(IUser u, String roleName) {
+        if (roleExists(roleName)) {
+            IRole role = getRoleFromName(roleName);
+            if (role != null) {
+                RequestBuffer.request(() -> {
+                   try {
+                       u.addRole(role);
+                   } catch (Exception e) {
+                       //Failed to add role.
+                   }
+                });
+            }
+        }
+    }
+
+
+    private static boolean roleExists(String roleName) {
+        for (IRole r : Main.getGuild().getRoles()) {
+            if (r.getName().equals(roleName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static IRole getRoleFromName(String roleName) {
+        for (IRole r : Main.getGuild().getRoles()) {
+            if (r.getName().equals(roleName)) {
+                return r;
+            }
+        }
+        return null;
     }
 }
