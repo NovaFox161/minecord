@@ -9,6 +9,6 @@ import org.apache.commons.lang.RandomStringUtils;
  */
 public class CodeGenerator {
     public static String getRandomCode() {
-        return RandomStringUtils.randomAlphanumeric(6);
+        return RandomStringUtils.randomAlphanumeric(6).toUpperCase();
     }
 }
