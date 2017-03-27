@@ -64,27 +64,21 @@ public class PlayerDataManager {
 
     private static void changeDiscordNickname(IUser u, String name) {
         IGuild guild = Main.getGuild();
-        if (guild.getUserByID(u.getID()) != null) {
-            RequestBuffer.request(() -> {
-                try {
-                    guild.setUserNickname(guild.getUserByID(u.getID()), name);
-                } catch (Exception e) {
-                    //Failed to change nick.
-                }
-            });
+        try {
+            guild.setUserNickname(u, name);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     private static void changeDiscordNickname(String userId, String name) {
         IGuild guild = Main.getGuild();
         if (guild.getUserByID(userId) != null) {
-            RequestBuffer.request(() -> {
-                try {
-                    guild.setUserNickname(guild.getUserByID(userId), name);
-                } catch (Exception e) {
-                    //Failed to change nick.
-                }
-            });
+            try {
+                guild.setUserNickname(guild.getUserByID(userId), name);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
