@@ -1,7 +1,8 @@
 package com.cloudcraftgaming.minecord;
 
+import com.cloudcraftgaming.minecord.bukkit.listeners.JoinListener;
+import com.cloudcraftgaming.minecord.bukkit.utils.FileManager;
 import com.cloudcraftgaming.minecord.discord.command.DiscordCommandExecutor;
-import com.cloudcraftgaming.minecord.utils.FileManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
@@ -43,6 +44,7 @@ public class Main extends JavaPlugin {
         //Register Bukkit commands
 
         //Register Bukkit event Listeners
+        getServer().getPluginManager().registerEvents(new JoinListener(), this);
     }
 
     private static IDiscordClient createClient(String token) {

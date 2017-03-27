@@ -1,4 +1,4 @@
-package com.cloudcraftgaming.minecord.utils;
+package com.cloudcraftgaming.minecord.bukkit.utils;
 
 import com.cloudcraftgaming.minecord.Main;
 import org.bukkit.configuration.file.YamlConfiguration;
