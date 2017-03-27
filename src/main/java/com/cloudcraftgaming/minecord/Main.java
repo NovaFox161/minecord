@@ -10,6 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
 import sx.blah.discord.api.events.EventDispatcher;
+import sx.blah.discord.handle.obj.IGuild;
 import sx.blah.discord.util.DiscordException;
 
 /**
@@ -64,5 +65,9 @@ public class Main extends JavaPlugin {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static IGuild getGuild() {
+        return client.getGuilds().get(0);
     }
 }
