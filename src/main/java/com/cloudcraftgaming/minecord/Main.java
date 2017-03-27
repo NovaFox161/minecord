@@ -28,6 +28,8 @@ public class Main extends JavaPlugin {
 
         //File stuffs
         FileManager.createConfig();
+        FileManager.createCache();
+        FileManager.createPlayerData();
         FileManager.checkFileVersions();
 
         //Connect bot
