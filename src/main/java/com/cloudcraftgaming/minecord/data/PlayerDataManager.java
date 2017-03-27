@@ -35,7 +35,7 @@ public class PlayerDataManager {
     public static String startRegistration(Player player) {
         YamlConfiguration cache = FileManager.getCache();
         String code = CodeGenerator.getRandomCode();
-        cache.set(code, player.getUniqueId());
+        cache.set(code, player.getUniqueId().toString());
         FileManager.saveCache(cache);
         return code;
     }
