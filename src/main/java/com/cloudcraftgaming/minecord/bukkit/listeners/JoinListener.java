@@ -17,5 +17,6 @@ public class JoinListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onJoin(PlayerJoinEvent event) {
         PlayerDataManager.updatePlayerData(event.getPlayer());
+        //TODO: Update Discord Nickname if needed!!
     }
 }

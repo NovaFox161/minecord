@@ -13,6 +13,7 @@ import java.io.IOException;
  */
 public class FileManager {
     private static Double conVersion = 1.0;
+    static Double msgVersion = 1.0;
 
     public static void createConfig() {
         File file = new File(Main.plugin.getDataFolder() + "/config.yml");
@@ -64,7 +65,7 @@ public class FileManager {
     }
 
     //Getters
-    public static File getCacheFile() {
+    private static File getCacheFile() {
         return new File(Main.plugin.getDataFolder() + "/cache.yml");
     }
 
@@ -72,7 +73,7 @@ public class FileManager {
         return YamlConfiguration.loadConfiguration(getCacheFile());
     }
 
-    public static File getPlayerDataFile() {
+    private static File getPlayerDataFile() {
         return new File(Main.plugin.getDataFolder() + "/players.yml");
     }
 
@@ -100,6 +101,10 @@ public class FileManager {
     public static void checkFileVersions() {
         if (Main.plugin.getConfig().getDouble("Config Version") != conVersion) {
             Main.plugin.getLogger().severe("Config out dated!!! Please save settings, delete config, and restart server!! Disabling plugin to prevent further errors!");
+            Main.plugin.getPluginLoader().disablePlugin(Main.plugin);
+        }
+        if (MessageManager.getMessageYml().getDouble("Messages Version") != msgVersion) {
+            Main.plugin.getLogger().severe("Messages out dated!!! Please save messages, delete message files, and restart server!! Disabling plugin to prevent further errors!");
             Main.plugin.getPluginLoader().disablePlugin(Main.plugin);
         }
     }

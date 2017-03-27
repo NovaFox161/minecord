@@ -1,7 +1,9 @@
 package com.cloudcraftgaming.minecord;
 
+import com.cloudcraftgaming.minecord.bukkit.command.BaseCommand;
 import com.cloudcraftgaming.minecord.bukkit.listeners.JoinListener;
 import com.cloudcraftgaming.minecord.bukkit.utils.FileManager;
+import com.cloudcraftgaming.minecord.bukkit.utils.MessageManager;
 import com.cloudcraftgaming.minecord.discord.command.DiscordCommandExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 import sx.blah.discord.api.ClientBuilder;
@@ -31,6 +33,8 @@ public class Main extends JavaPlugin {
         FileManager.createConfig();
         FileManager.createCache();
         FileManager.createPlayerData();
+
+        MessageManager.createMessagesFile();
         FileManager.checkFileVersions();
 
         //Connect bot
@@ -42,6 +46,7 @@ public class Main extends JavaPlugin {
         DiscordCommandExecutor.getExecutor().enable(client);
 
         //Register Bukkit commands
+        getCommand("discord").setExecutor(new BaseCommand());
 
         //Register Bukkit event Listeners
         getServer().getPluginManager().registerEvents(new JoinListener(), this);
