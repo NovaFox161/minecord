@@ -5,3 +5,7 @@ website: www.cloudcraftgaming.com
 author: NovaFox161 (Shades161)
 
 main: com.cloudcraftgaming.minecord.Main
+
+commands:
+  discord:
+    description: Allows the user to register.
