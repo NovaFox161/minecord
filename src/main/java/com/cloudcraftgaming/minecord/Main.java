@@ -4,11 +4,12 @@ import com.cloudcraftgaming.minecord.bukkit.command.BaseCommand;
 import com.cloudcraftgaming.minecord.bukkit.listeners.JoinListener;
 import com.cloudcraftgaming.minecord.bukkit.utils.FileManager;
 import com.cloudcraftgaming.minecord.bukkit.utils.MessageManager;
-import com.cloudcraftgaming.minecord.discord.command.DiscordCommandExecutor;
+import com.cloudcraftgaming.minecord.discord.listeners.DMListener;
+import com.cloudcraftgaming.minecord.discord.listeners.ReadyEventListener;
 import org.bukkit.plugin.java.JavaPlugin;
 import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
-import sx.blah.discord.handle.obj.IUser;
+import sx.blah.discord.api.events.EventDispatcher;
 import sx.blah.discord.util.DiscordException;
 
 /**
@@ -19,7 +20,7 @@ import sx.blah.discord.util.DiscordException;
 public class Main extends JavaPlugin {
     public static Main plugin;
 
-    private static IDiscordClient client;
+    public static IDiscordClient client;
 
     @Override
     public void onDisable() {
@@ -42,8 +43,10 @@ public class Main extends JavaPlugin {
         if (client == null)
             throw new NullPointerException("Failed to log in! Client cannot be null!");
 
-        //Load up bot modules
-        DiscordCommandExecutor.getExecutor().enable(client);
+        //Register discord event listeners
+        EventDispatcher dispatcher = client.getDispatcher();
+        dispatcher.registerListener(new DMListener());
+        dispatcher.registerListener(new ReadyEventListener());
 
         //Register Bukkit commands
         getCommand("discord").setExecutor(new BaseCommand());
@@ -61,9 +64,5 @@ public class Main extends JavaPlugin {
             e.printStackTrace();
         }
         return null;
-    }
-
-    public static IUser getSelfUser() {
-        return client.getOurUser();
     }
 }

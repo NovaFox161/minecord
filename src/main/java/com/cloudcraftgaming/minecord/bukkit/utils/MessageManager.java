@@ -44,6 +44,9 @@ public class MessageManager {
 
             msg.addDefault("Command.Register.Start", "&6Please DM the bot with this code to register &5%code%&6!");
 
+            msg.addDefault("Discord.Register.Success", "You have successfully registered!");
+            msg.addDefault("Discord.Register.Failure", "Uh oh! The code seems to be invalid! Please make sure you copied it correctly!");
+
             msg.addDefault("Notif.Command.PlayerOnly", "&4Only players can use that command!");
             msg.addDefault("Notif.Command.Register.Already", "&4You are already registered!");
             msg.addDefault("Notif.Args.Few", "&4Too few arguments!");

@@ -26,6 +26,7 @@ public class FileManager {
             Main.plugin.getConfig().addDefault("Config Version", conVersion);
 
             Main.plugin.getConfig().addDefault("Bot.Token", "Enter-token-here");
+            Main.plugin.getConfig().addDefault("Bot.Playing", "DM me to register!");
 
             Main.plugin.getConfig().options().copyDefaults(true);
             Main.plugin.saveConfig();
