@@ -1,9 +1,11 @@
 package com.cloudcraftgaming.minecord;
 
+import com.cloudcraftgaming.minecord.discord.command.DiscordCommandExecutor;
 import com.cloudcraftgaming.minecord.utils.FileManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
+import sx.blah.discord.handle.obj.IUser;
 import sx.blah.discord.util.DiscordException;
 
 /**
@@ -14,7 +16,7 @@ import sx.blah.discord.util.DiscordException;
 public class Main extends JavaPlugin {
     public static Main plugin;
 
-    public static IDiscordClient client;
+    private static IDiscordClient client;
 
     @Override
     public void onDisable() {
@@ -33,7 +35,12 @@ public class Main extends JavaPlugin {
         if (client == null)
             throw new NullPointerException("Failed to log in! Client cannot be null!");
 
+        //Load up bot modules
+        DiscordCommandExecutor.getExecutor().enable(client);
 
+        //Register Bukkit commands
+
+        //Register Bukkit event Listeners
     }
 
     private static IDiscordClient createClient(String token) {
@@ -45,5 +52,9 @@ public class Main extends JavaPlugin {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static IUser getSelfUser() {
+        return client.getOurUser();
     }
 }
