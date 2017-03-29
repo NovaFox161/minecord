@@ -46,6 +46,7 @@ public class MessageManager {
 
             msg.addDefault("Discord.Register.Success", "You have successfully registered!");
             msg.addDefault("Discord.Register.Failure", "Uh oh! The code seems to be invalid! Please make sure you copied it correctly!");
+            msg.addDefault("Discord.Join.DM", "Welcome! Please enter your registration code, if you do not have one, in-game type /discord register");
 
             msg.addDefault("Notif.Command.PlayerOnly", "&4Only players can use that command!");
             msg.addDefault("Notif.Command.Register.Already", "&4You are already registered!");
